@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gaming-900: #0a0a0f;
+  --color-gaming-800: #13141c;
+  --color-gaming-700: #1c1d29;
+  
+  --color-neon-blue: #00f0ff;
+  --color-neon-purple: #b026ff;
+  --color-neon-cyan: #0ff0fc;
+  --color-neon-green: #39ff14;
+  --color-neon-red: #ff3366;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-gaming-900 text-white font-sans;
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(176, 38, 255, 0.05), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.05), transparent 25%);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .neon-text-blue {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
+  }
+  
+  .neon-text-purple {
+    text-shadow: 0 0 10px rgba(176, 38, 255, 0.5), 0 0 20px rgba(176, 38, 255, 0.3);
+  }
+  
+  .neon-border-blue {
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.1);
+    border-color: rgba(0, 240, 255, 0.5);
+  }
+
+  .neon-border-purple {
+    box-shadow: 0 0 10px rgba(176, 38, 255, 0.3), inset 0 0 10px rgba(176, 38, 255, 0.1);
+    border-color: rgba(176, 38, 255, 0.5);
+  }
+  
+  .glass-panel {
+    @apply bg-gaming-800/80 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)];
+  }
+}
