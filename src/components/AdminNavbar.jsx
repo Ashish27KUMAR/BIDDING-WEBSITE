@@ -39,7 +39,7 @@ const AdminNavbar = ({ user }) => {
                     </div>
                     <div className="flex flex-col">
                         <h1 className="text-xl font-black italic tracking-widest text-white hidden sm:block drop-shadow-md leading-tight">
-                            NEXUS<span className="text-purple-400">ADMIN</span>
+                            BIDZILLA<span className="text-purple-400">ADMIN</span>
                         </h1>
                         <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest hidden sm:block">Dashboard</span>
                     </div>

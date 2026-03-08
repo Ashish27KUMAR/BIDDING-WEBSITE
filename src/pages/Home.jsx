@@ -160,7 +160,7 @@ const Home = () => {
                                 <span className="text-cyan-400">High Stakes</span>
                             </h2>
                             <p className="text-gray-400 text-base md:text-lg mb-8 font-light leading-relaxed">
-                                Whether you're running a professional esports draft, a fantasy league mega-auction, or a local sports club bidding war, NexusBid provides the stable, visually stunning environment you need to execute flawlessly.
+                                Whether you're running a professional esports draft, a fantasy league mega-auction, or a local sports club bidding war, Bidzilla provides the stable, visually stunning environment you need to execute flawlessly.
                             </p>
 
                             <ul className="space-y-4">

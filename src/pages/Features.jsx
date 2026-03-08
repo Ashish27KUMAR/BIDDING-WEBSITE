@@ -23,7 +23,7 @@ const Features = () => {
                     className="text-center mb-20"
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-bold tracking-widest uppercase mb-6 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
-                        <Crosshair size={16} /> Nexus Core
+                        <Crosshair size={16} /> Bidzilla Core
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black italic uppercase tracking-widest text-white drop-shadow-lg mb-6">
                         System <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Capabilities</span>

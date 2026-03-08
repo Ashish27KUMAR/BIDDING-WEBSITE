@@ -23,7 +23,7 @@ const About = () => {
                             <Activity size={16} /> Origin Story
                         </div>
                         <h1 className="text-5xl md:text-7xl font-black italic uppercase tracking-widest text-white drop-shadow-lg mb-6">
-                            Project <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Nexus</span>
+                            Project <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Bidzilla</span>
                         </h1>
                         <p className="text-gray-400 font-bold uppercase tracking-widest text-sm md:text-base">
                             Forging the ultimate bridge between rigorous administration and stadium-level excitement.
@@ -43,7 +43,7 @@ const About = () => {
 
                         <div className="relative z-10 space-y-8 text-gray-300 leading-relaxed text-sm md:text-base lg:text-lg">
                             <p className="font-light">
-                                <strong className="text-cyan-400 uppercase tracking-widest font-black">NexusBid</strong> was conceptualized to solve a critical bottleneck in local and global sports organizations: the chaotic nature of draft days and team auctions.
+                                <strong className="text-cyan-400 uppercase tracking-widest font-black">Bidzilla</strong> was conceptualized to solve a critical bottleneck in local and global sports organizations: the chaotic nature of draft days and team auctions.
                             </p>
 
                             <p className="font-light">

@@ -35,7 +35,7 @@ const Navbar = ({ user }) => {
                         <Trophy className="w-8 h-8 text-cyan-400" />
                     </div>
                     <h1 className="text-2xl font-black italic tracking-widest text-white hidden sm:block drop-shadow-md cursor-default">
-                        NEXUS<span className="text-cyan-400">BID</span>
+                        BID<span className="text-cyan-400">ZILLA</span>
                     </h1>
                 </div>
 

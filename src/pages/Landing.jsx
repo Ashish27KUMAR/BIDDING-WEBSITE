@@ -3,56 +3,56 @@ import { useNavigate } from "react-router-dom";
 import { Gavel } from 'lucide-react';
 
 function Landing() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            navigate("/home");
-        }, 4500);
-        return () => clearTimeout(timer);
-    }, [navigate]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/home");
+    }, 4500);
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
-    return (
-        <div className="fixed inset-0 z-[100] bg-gaming-900 overflow-hidden flex items-center justify-center">
-            {/* 🚀 Dark Cyber/Gaming Background */}
-            <div
-                className="absolute inset-0 bg-cover bg-center opacity-30 animate-pulse-slow mix-blend-screen"
-                style={{
-                    backgroundImage:
-                        "url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
-                }}
-            ></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-gaming-900 via-transparent to-gaming-900"></div>
+  return (
+    <div className="fixed inset-0 z-[100] bg-gaming-900 overflow-hidden flex items-center justify-center">
+      {/* 🚀 Dark Cyber/Gaming Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-30 animate-pulse-slow mix-blend-screen"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-gaming-900 via-transparent to-gaming-900"></div>
 
-            {/* ⚡ Animation Container */}
-            <div className="relative z-10 flex flex-col items-center">
-                {/* The Gavel Strike Effect */}
-                <div className="relative flex items-center justify-center h-48 w-48 mb-4 mt-8">
-                    {/* Shockwave circle */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shockwave-animation rounded-full border border-cyan-400"></div>
+      {/* ⚡ Animation Container */}
+      <div className="relative z-10 flex flex-col items-center">
+        {/* The Gavel Strike Effect */}
+        <div className="relative flex items-center justify-center h-48 w-48 mb-4 mt-8">
+          {/* Shockwave circle */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shockwave-animation rounded-full border border-cyan-400"></div>
 
-                    {/* Gavel Icon */}
-                    <div className="gavel-hit-animation text-cyan-400 drop-shadow-[0_0_30px_rgba(0,240,255,0.8)] z-10">
-                        <Gavel size={120} strokeWidth={1.5} />
-                    </div>
-                </div>
+          {/* Gavel Icon */}
+          <div className="gavel-hit-animation text-cyan-400 drop-shadow-[0_0_30px_rgba(0,240,255,0.8)] z-10">
+            <Gavel size={120} strokeWidth={1.5} />
+          </div>
+        </div>
 
-                {/* 🏆 Text Reveal */}
-                <div className="text-center mt-2 animate-fade-up">
-                    <h1 className="text-6xl md:text-8xl font-black italic tracking-tighter text-white drop-shadow-lg">
-                        NEXUS<span className="text-cyan-400">BID</span>
-                    </h1>
-                    <div className="h-1 w-full bg-cyan-400 mt-2 animate-scale-x shadow-[0_0_15px_rgba(0,240,255,0.8)]"></div>
-                    <p className="text-cyan-400/80 mt-4 tracking-[0.5em] font-light uppercase text-sm drop-shadow-md">
-                        Initializing Arena...
-                    </p>
-                </div>
-            </div>
+        {/* 🏆 Text Reveal */}
+        <div className="text-center mt-2 animate-fade-up">
+          <h1 className="text-6xl md:text-8xl font-black italic tracking-tighter text-white drop-shadow-lg">
+            BID<span className="text-cyan-400">ZILLA</span>
+          </h1>
+          <div className="h-1 w-full bg-cyan-400 mt-2 animate-scale-x shadow-[0_0_15px_rgba(0,240,255,0.8)]"></div>
+          <p className="text-cyan-400/80 mt-4 tracking-[0.5em] font-light uppercase text-sm drop-shadow-md">
+            Initializing Arena...
+          </p>
+        </div>
+      </div>
 
-            {/* 💡 Custom CSS for the "Hit" Effect */}
-            <style
-                dangerouslySetInnerHTML={{
-                    __html: `
+      {/* 💡 Custom CSS for the "Hit" Effect */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         @keyframes gavelHit {
           0% { 
             transform: rotate(-45deg) scale(1.5) translateY(-50px); 
@@ -148,10 +148,10 @@ function Landing() {
           to { transform: scale(1.05); opacity: 0.3; }
         }
       `,
-                }}
-            />
-        </div>
-    );
+        }}
+      />
+    </div>
+  );
 }
 
 export default Landing;
