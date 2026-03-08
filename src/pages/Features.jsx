@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Zap, ShieldCheck, Cpu, Globe, Crosshair } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const Features = () => {
     return (
@@ -105,6 +106,8 @@ const Features = () => {
                     </motion.div>
                 </div>
             </div>
+
+            <Footer />
         </div>
     );
 };

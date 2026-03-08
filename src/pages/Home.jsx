@@ -1,7 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Gavel, Users, Zap, BarChart3, Globe, Shield, Trophy, Target } from 'lucide-react';
+import { Gavel, Users, Zap, BarChart3, Globe, Shield, Target } from 'lucide-react';
+import Favicon from '../assets/Favicon.png';
+import Footer from '../components/Footer';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -120,7 +122,7 @@ const Home = () => {
                             className="bg-gaming-900 border border-white/5 hover:border-purple-500/50 p-8 rounded-2xl transition-all group overflow-hidden relative"
                         >
                             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 rounded-bl-[100px] -z-0"></div>
-                            <Trophy className="w-12 h-12 text-purple-400 mb-6 group-hover:scale-110 transition-transform" />
+                            <img src={Favicon} alt="BidZilla Logo" className="w-10 h-10 sm:w-12 sm:h-12 mb-6 group-hover:scale-110 transition-transform object-contain" />
                             <h3 className="text-2xl font-black italic uppercase mb-3 text-white">Dynamic Budgets</h3>
                             <p className="text-gray-400 leading-relaxed font-light">
                                 Configure precise team purses, manage mid-auction budget recalculations, and track exactly how much buying power remains per squad.
@@ -196,6 +198,8 @@ const Home = () => {
                     <Gavel size={24} /> Initialize Server
                 </button>
             </section>
+
+            <Footer />
         </div>
     );
 };

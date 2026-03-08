@@ -191,17 +191,17 @@ const AdminHistory = () => {
                     transition={{ duration: 0.5 }}
                     className="mb-8 border-b border-purple-500/30 pb-6 flex items-center justify-between gap-4"
                 >
-                    <div className="flex items-center gap-4">
-                        <div className="p-4 bg-purple-500/20 rounded-2xl border border-purple-500/50 shadow-[0_0_20px_rgba(176,38,255,0.3)]">
-                            <History className="w-8 h-8 text-purple-400" />
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="p-3 sm:p-4 bg-purple-500/20 rounded-2xl border border-purple-500/50 shadow-[0_0_20px_rgba(176,38,255,0.3)] shrink-0">
+                            <History className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400" />
                         </div>
                         <div>
-                            <div className="flex items-center gap-4 flex-wrap">
-                                <h2 className="text-4xl font-black italic uppercase tracking-widest text-white neon-text-blue mb-1">
+                            <div className="flex items-center gap-2 sm:gap-4 flex-wrap mt-1 sm:mt-0">
+                                <h2 className="text-2xl sm:text-4xl font-black italic uppercase tracking-widest text-white neon-text-blue mb-0 sm:mb-1 leading-none">
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-500">History</span>
                                 </h2>
                             </div>
-                            <p className="text-gray-400 font-bold uppercase tracking-widest text-sm mt-1">
+                            <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px] sm:text-sm mt-1 sm:mt-1 leading-snug pr-2">
                                 Review past and active operational arenas
                             </p>
                         </div>
@@ -274,10 +274,10 @@ const AdminHistory = () => {
                         <motion.div
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
-                            className="text-center py-20 text-gray-500 uppercase font-bold tracking-widest bg-gaming-800/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl"
+                            className="text-center py-12 sm:py-20 text-gray-500 uppercase font-bold tracking-widest bg-gaming-800/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl px-4"
                         >
-                            <History className="w-16 h-16 mx-auto mb-4 opacity-20" />
-                            No previous events located in databanks.
+                            <History className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 opacity-20" />
+                            <p className="text-xs sm:text-base leading-relaxed max-w-[200px] sm:max-w-none mx-auto">No previous events located in databanks.</p>
                         </motion.div>
                     ) : (
                         <AnimatePresence>

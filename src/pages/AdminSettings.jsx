@@ -40,6 +40,7 @@ const AdminSettings = () => {
                 // Warning: In a real app, you also need to re-authenticate the user 
                 // if their login session is old before deleting.
                 await deleteUser(user);
+                setShowDeleteModal(false);
                 toast.success('Identity permanently erased. Terminal disconnected.');
                 navigate('/home');
             }
@@ -54,12 +55,12 @@ const AdminSettings = () => {
     };
 
     return (
-        <div className="flex-1 flex flex-col relative bg-gaming-900 text-white font-sans overflow-x-hidden min-h-screen">
+        <div className="flex-1 flex flex-col relative bg-gaming-900 text-white font-sans overflow-hidden h-[calc(100vh-5rem)]">
             {/* Dynamic Tech Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
                 <div className="absolute inset-0 bg-[#0a0a12]"></div>
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-                <div className="absolute top-0 w-full h-[500px] bg-gradient-to-b from-purple-500/5 via-gaming-900/50 to-gaming-900"></div>
+                <div className="absolute top-0 w-full h-full bg-gradient-to-b from-purple-500/5 via-gaming-900/50 to-gaming-900"></div>
             </div>
 
             <div className="container mx-auto p-4 py-12 relative z-10 w-full max-w-4xl">
@@ -191,7 +192,7 @@ const AdminSettings = () => {
                                         onClick={() => setShowDeleteModal(false)}
                                         className="flex-1 px-4 py-3 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 font-bold uppercase tracking-widest text-xs transition-colors"
                                     >
-                                        Abort
+                                        Cancel
                                     </button>
                                     <button
                                         onClick={confirmDeletion}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Network, Search, Award, Play } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const HowItWorks = () => {
     return (
@@ -105,6 +106,8 @@ const HowItWorks = () => {
 
                 </div>
             </div>
+
+            <Footer />
         </div>
     );
 };

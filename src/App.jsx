@@ -12,6 +12,8 @@ import Home from './pages/Home';
 import Features from './pages/Features';
 import HowItWorks from './pages/HowItWorks';
 import About from './pages/About';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminHistory from './pages/AdminHistory';
@@ -40,6 +42,8 @@ const AppContent = ({ user }) => {
           <Route path="/features" element={<Features />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about" element={<About />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
           <Route path="/login" element={user ? <Navigate to="/admin-home" /> : <Login />} />
           <Route path="/join-room" element={<JoinRoom />} />
           <Route path="/team-setup/:roomCode" element={<TeamSetup />} />

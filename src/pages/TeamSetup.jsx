@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc, collection, onSnapshot, addDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
-import { Trophy, Users, ShieldAlert } from 'lucide-react';
+import { Users, ShieldAlert } from 'lucide-react';
+import Favicon from '../assets/Favicon.png';
 
 const TeamSetup = () => {
     const { roomCode } = useParams();
@@ -78,7 +79,7 @@ const TeamSetup = () => {
     if (hasSubmitted) {
         return (
             <div className="min-h-screen bg-gaming-900 flex flex-col items-center justify-center p-4">
-                <Trophy className="w-24 h-24 text-cyan-400 mb-6 drop-shadow-[0_0_20px_rgba(0,240,255,0.6)]" />
+                <img src={Favicon} alt="BidZilla Logo" className="w-16 h-16 sm:w-24 sm:h-24 mb-6 drop-shadow-[0_0_20px_rgba(0,240,255,0.6)] object-contain" />
                 <h1 className="text-3xl font-black italic uppercase tracking-widest text-white mb-2 text-center">Registration Confirmed</h1>
                 <p className="text-gray-400 font-bold tracking-widest uppercase text-center max-w-md">Your franchise has been locked in. Await further instructions from the Auctioneer.</p>
             </div>

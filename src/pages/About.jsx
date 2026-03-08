@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Users2, Shield, Activity } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const About = () => {
     return (
@@ -79,6 +80,8 @@ const About = () => {
                     </motion.div>
                 </motion.div>
             </div>
+
+            <Footer />
         </div>
     );
 };

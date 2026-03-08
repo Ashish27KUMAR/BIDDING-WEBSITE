@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, ArrowLeft, Users, Activity, ExternalLink, Download, X } from 'lucide-react';
+import { ArrowLeft, Users, Activity, ExternalLink, Download, X } from 'lucide-react';
+import Favicon from '../assets/Favicon.png';
 import { listenToAuction, listenToTeams, listenToPlayers } from '../utils/auctionLogic';
 
 const AdminEventResult = () => {
@@ -153,7 +154,7 @@ const AdminEventResult = () => {
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                         <div>
                             <h2 className="text-4xl font-black italic uppercase tracking-widest text-white neon-text-blue mb-1 flex items-center gap-4">
-                                <Trophy className="text-cyan-400" size={36} />
+                                <img src={Favicon} alt="BidZilla Logo" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_0_10px_rgba(0,240,255,0.5)]" />
                                 {auction.name} Results
                             </h2>
                             <div className="text-xs text-cyan-400 font-bold uppercase tracking-widest mt-2 bg-cyan-500/10 inline-block px-3 py-1 rounded border border-cyan-500/30">
