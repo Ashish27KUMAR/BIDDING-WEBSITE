@@ -12,7 +12,7 @@ import {
     markPlayerUnsold
 } from '../utils/auctionLogic';
 import PlayerCard from '../components/PlayerCard';
-import { Gavel, Clock, ArrowLeft, Users, X, ChevronDown, ChevronUp, ExternalLink, Volume2, VolumeX } from 'lucide-react';
+import { Gavel, Clock, ArrowLeft, Users, X, ChevronDown, ChevronUp, ExternalLink, Volume2, VolumeX, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const AuctionRoom = () => {
@@ -23,6 +23,7 @@ const AuctionRoom = () => {
     const [roomData, setRoomData] = useState(null);
     const [teams, setTeams] = useState([]);
     const [players, setPlayers] = useState([]);
+    const [globalAmountUnit, setGlobalAmountUnit] = useState("Lakh");
 
     // Sound State
     const [isMuted, setIsMuted] = useState(false);
@@ -260,7 +261,7 @@ const AuctionRoom = () => {
                 <div className="w-full space-y-6 flex flex-col h-full">
 
                     {/* Live Player Top Bar / Timer */}
-                    {currentPlayer ? (
+                    {/* {currentPlayer ? (
                         <div className="bg-gaming-900 border border-cyan-500/30 shadow-[0_0_20px_rgba(0,240,255,0.1)] rounded-xl p-4 flex justify-between items-center">
                             <div className="flex items-center gap-3">
                                 <Clock className="text-cyan-400 animate-pulse" />
@@ -284,7 +285,7 @@ const AuctionRoom = () => {
                             <h2 className="text-2xl font-black uppercase italic tracking-widest text-purple-400">Waiting for next player</h2>
                             <p className="text-gray-500 uppercase text-sm font-bold tracking-widest mt-2">The Auctioneer is preparing the next lot.</p>
                         </div>
-                    )}
+                    )} */}
 
                     {/* Main Stage - Player Card */}
                     <div className="flex-1 min-h-[400px]">
@@ -297,8 +298,11 @@ const AuctionRoom = () => {
                                 onNavigatePrev={handlePrevPlayer}
                                 onNavigateNext={handleNextPlayer}
                                 onSell={handleSell}
+                                onBidChange={handleIncreaseBid}
                                 onSkip={handleSkip}
                                 teams={teams}
+                                globalAmountUnit={globalAmountUnit}
+                                setGlobalAmountUnit={setGlobalAmountUnit}
                             />
                         ) : (
                             <div className="h-full flex flex-col items-center justify-center opacity-50 relative pointer-events-none text-center">
@@ -355,16 +359,65 @@ const AuctionRoom = () => {
                                 <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
                                     <button
                                         onClick={() => {
-                                            const sheetUrl = roomData?.sheetUrl || import.meta.env.VITE_GOOGLE_SHEET_URL;
-                                            if (sheetUrl) {
-                                                window.open(sheetUrl, '_blank');
-                                            } else {
-                                                alert("No Google Sheet configured for this event. Please set it via Admin Dashboard creating the event or via .env file.");
-                                            }
+                                            import('papaparse').then((Papa) => {
+                                                const csvData = [];
+                                                
+                                                // 1. Create Headers Row (Row 1 & 2)
+                                                const teamNamesRow = ["Teams"];
+                                                const subHeadersRow = ["Serial No."];
+                                                
+                                                teams.forEach(t => {
+                                                    teamNamesRow.push(t.name, "", "");
+                                                    subHeadersRow.push("Player's name", "Base Price", "Sold Price");
+                                                });
+                                                
+                                                csvData.push(teamNamesRow);
+                                                csvData.push(subHeadersRow);
+                                                
+                                                // 2. Prepare Data Grouped By Team
+                                                const teamPlayersMap = {};
+                                                let maxPlayersInATeam = 0;
+                                                teams.forEach(t => {
+                                                    const tPlayers = players.filter(p => p.soldTo === t.id);
+                                                    teamPlayersMap[t.id] = tPlayers;
+                                                    if(tPlayers.length > maxPlayersInATeam) {
+                                                        maxPlayersInATeam = tPlayers.length;
+                                                    }
+                                                });
+                                                
+                                                if(maxPlayersInATeam === 0) {
+                                                    alert("No players sold yet to download data.");
+                                                    return;
+                                                }
+                                                
+                                                // 3. Create Player Rows
+                                                for (let i = 0; i < maxPlayersInATeam; i++) {
+                                                    const row = [(i + 1).toString()]; // Serial No
+                                                    
+                                                    teams.forEach(t => {
+                                                        const p = teamPlayersMap[t.id][i];
+                                                        if (p) {
+                                                            row.push(p.name, p.basePrice, p.soldPrice);
+                                                        } else {
+                                                            row.push("", "", ""); // Fill empty spaces if team has fewer players
+                                                        }
+                                                    });
+                                                    
+                                                    csvData.push(row);
+                                                }
+                                                
+                                                const csv = Papa.default.unparse(csvData);
+                                                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                                                const url = URL.createObjectURL(blob);
+                                                const a = document.createElement('a');
+                                                a.href = url;
+                                                a.download = `${roomData.name.replace(/\s+/g, '_')}_Auction_Results.csv`;
+                                                a.click();
+                                            });
                                         }}
                                         className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-green-600 hover:bg-green-500 text-white px-3 sm:px-4 py-3 sm:py-2 rounded-lg font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-colors shadow-[0_0_15px_rgba(34,197,94,0.3)]"
                                     >
-                                        <ExternalLink size={16} /> Open Spreadsheet
+                                        <Download size={16} /> Download Data
                                     </button>
                                     <button onClick={() => setIsTeamModalOpen(false)} className="text-gray-400 hover:text-red-400 transition-colors p-3 sm:p-2 rounded-lg sm:rounded-full hover:bg-white/5 bg-gaming-900 border border-white/10 sm:border-none sm:bg-transparent flex-shrink-0 flex items-center justify-center">
                                         <X size={20} />

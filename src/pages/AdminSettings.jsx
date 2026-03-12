@@ -5,6 +5,7 @@ import { auth } from '../firebase/config';
 import { deleteUser } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { User, Mail, ShieldAlert, KeyRound, AlertTriangle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const AdminSettings = () => {
     const navigate = useNavigate();
@@ -12,25 +13,65 @@ const AdminSettings = () => {
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [verificationCode, setVerificationCode] = useState('');
+    const [generatedCode, setGeneratedCode] = useState('');
     const [isSendingCode, setIsSendingCode] = useState(false);
 
-    // Mock the actual code for now
-    const MOCK_SECRET_CODE = '123456';
+    // EmailJS Credentials from .env
+    const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    const handleRequestDeletion = () => {
+    const handleRequestDeletion = async () => {
+        if (!user || !user.email) {
+            toast.error("No email associated with this account.");
+            return;
+        }
+
         setIsSendingCode(true);
-        // Simulate sending email via EmailJS
-        setTimeout(() => {
+
+        // Generate 6-digit random code
+        const code = Math.floor(100000 + Math.random() * 900000).toString();
+        setGeneratedCode(code);
+
+        // Generates the time for the email content (e.g., "04:30 PM")
+        const timeLimit = new Date();
+        timeLimit.setMinutes(timeLimit.getMinutes() + 15);
+        const timeString = timeLimit.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        // Parameters sent to EmailJS Template
+        const templateParams = {
+            email: user.email,         // Matches {{email}} in "To Email"
+            passcode: code,            // Matches {{passcode}} in content
+            time: timeString,          // Matches {{time}} in content
+        };
+
+        try {
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                templateParams,
+                EMAILJS_PUBLIC_KEY
+            );
+
             setIsSendingCode(false);
             setShowDeleteModal(true);
-            toast.info(`Verification code sent to ${user?.email || 'your email'}. (Simulated: use ${MOCK_SECRET_CODE})`, {
-                autoClose: 6000
-            });
-        }, 1500);
+            toast.info(`Verification code sent to ${user.email}.`, { autoClose: 6000 });
+        } catch (error) {
+            console.error('EmailJS Error:', error);
+            setIsSendingCode(false);
+
+            // Fallback for testing until keys are added:
+            if (!EMAILJS_SERVICE_ID || EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID") {
+                toast.warning(`EmailJS not configured. Using fallback code: ${code}`);
+                setShowDeleteModal(true);
+            } else {
+                toast.error('Failed to send verification email. Please try again.');
+            }
+        }
     };
 
     const confirmDeletion = async () => {
-        if (verificationCode !== MOCK_SECRET_CODE) {
+        if (verificationCode !== generatedCode) {
             toast.error('Invalid Verification Code!');
             return;
         }
